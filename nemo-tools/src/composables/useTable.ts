@@ -1,12 +1,14 @@
 import api from "@/http/api";
 import http from "@/http/http"
 import {Connection, TableBase, TableInfo} from "@/type/common";
-import { onMounted, reactive, ref} from "vue";
+import { onMounted, reactive, ref,h} from "vue";
 import {Ref} from "@vue/reactivity";
 import {useForm} from "ant-design-vue/es/form";
 import { message } from 'ant-design-vue';
+import useNotice from "@/composables/useNotice";
 
 export default function useTable() {
+    const {openNotificationWithIcon} = useNotice();
 
     let tableList = ref<Array<TableInfo>>([])
     let connections = ref<Array<Connection>>([])
@@ -33,7 +35,18 @@ export default function useTable() {
                 'entityNamespace':tableBase.value.entityNamespace,
                 'list':selectTableList.value
             })
-            console.log(response);
+            if(response.data.code ===0){
+                const Entities =  response.data.data.files.Entities.join(",")
+                const Models =  response.data.data.files.Models.join(",")
+                const style = {"word-break":"break-word",width:"100%"};
+                 openNotificationWithIcon('success','Entity创建成功',h('p',Entities),style);
+                 setTimeout(()=>{
+                     openNotificationWithIcon('success','Model 创建成功',h('p',Models),style);
+                 },800)
+
+            }else {
+                return message.error('文件生成失败');
+            }
         })
     }
 

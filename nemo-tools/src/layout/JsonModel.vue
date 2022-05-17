@@ -47,8 +47,10 @@ import JsonForm from "@/components/JsonForm.vue"
 import BaseForm from "@/components/BaseForm.vue"
 import TreeTable from "@/components/TreeTable.vue"
 import {rootKey} from "@/type/common";
+import useNotice from "@/composables/useNotice";
 
 
+const {openNotificationWithIcon} = useNotice();
 const jsonFormRef = ref<InstanceType<typeof JsonForm>>()
 const reqTreeRef = ref<InstanceType<typeof TreeTable>>()
 const baseFormRef = ref<InstanceType<typeof BaseForm>>()
@@ -77,7 +79,9 @@ async function submitJson() {
     })
 
     if(result.data.data.files && result.data.data.files.length>0){
-       return message.success("文档已生成");
+      const files = result.data.data.files.join(";");
+      const style = {"word-break":"break-word",width:"100%"};
+      return  openNotificationWithIcon('success','文档已生成',h('p',files),style);
     }
     return message.warning('文档生成失败,请检查数据');
 
