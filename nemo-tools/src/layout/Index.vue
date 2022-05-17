@@ -4,13 +4,13 @@
       <a-col :span="8">
         <a-card title="JSON Mode" :bordered="false">
           <template #extra><form-outlined @click="router.push('json_model')"  class="outlined"/></template>
-          <p>根据json数据生成Nemo的数据模型</p>
+          <p>根据json数据生成数据模型类</p>
         </a-card>
       </a-col>
       <a-col :span="8">
         <a-card title="Table Mode" :bordered="false">
           <template #extra><form-outlined class="outlined" @click="router.push('db_model')" /></template>
-          <p>根据数据库表生成Nemo数据模型</p>
+          <p>根据数据库表生成Model 以及 Entity 类</p>
         </a-card>
       </a-col>
       <a-col :span="8">

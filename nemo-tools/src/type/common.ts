@@ -27,4 +27,32 @@ export interface ApiBasic{
     className:string;
 }
 
+
+export interface TableInfo {
+    table:string;
+    columns:Column[];
+}
+
+export interface  Connection{
+    name:string;
+    connection:string;
+}
+
+export interface TableBase {
+    connection:string;
+    entityNamespace:string;
+    modelNamespace:string;
+}
+
+export interface Column {
+    column: string;
+    comment: string;
+    default: null|string
+    is_primary: number;
+    nullable: number
+    table: string
+    type: string
+}
+
+
 export const rootKey = '0'; //根节点的key

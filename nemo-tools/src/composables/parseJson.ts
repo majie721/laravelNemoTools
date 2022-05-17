@@ -1,6 +1,6 @@
 import {PropertyNode} from "@/type/common";
 
-export const scalarType: string[] = ['bool', 'string', 'float', 'int','null']
+export const scalarType = ['bool', 'string', 'float', 'int','null']
 
 export function parse(obj: any, depth: number): PropertyNode[] {
     let objInfo: PropertyNode[] = [];

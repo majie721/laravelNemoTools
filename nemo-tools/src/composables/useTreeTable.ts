@@ -165,7 +165,6 @@ export default function useTreeTable() {
 
     //树的节点变换后,重新刷新树节点数据
     const formJson = (jsonObj:PropertyNode[]) => {
-        console.log(jsonObj);
         jsonNodeList[0].children = jsonObj
         updateKeys(jsonNodeList)
     }
