@@ -15,6 +15,9 @@
       <a-form-item class="form-item"  name="entity namespace" label="entity namespace" :rules="rules.entityNamespace" v-bind="validateInfos.entityNamespace">
         <a-input  v-model:value="tableBase.entityNamespace"/>
       </a-form-item>
+      <a-form-item class="form-item"  name="code namespace" label="code namespace" :rules="rules.codePath" v-bind="validateInfos.codeNamespace">
+        <a-input  v-model:value="tableBase.codePath"/>
+      </a-form-item>
       <a-form-item class="form-item"  name="connections" label="connections">
         <a-select v-model:value="tableBase.connection" @change="()=>{getTables()}">
           <a-select-option v-for="(item,key) in connections" :key="key" :value="item.connection">{{item.connection}}</a-select-option>
@@ -30,15 +33,15 @@
       </a-button>
     </template>
     <div style="background-color: #ececec; padding: 20px">
-      <a-checkbox-group v-model:value="selectTableList" style="width: 100%">
-        <a-row type="flex" :gutter="[24,24]">
-          <a-col :span="3" v-for="(table,index) in tableList" :key="index">
-            <a-card size="small" :title="table.table" :bordered="false">
-              <p><a-checkbox :value="table">选择</a-checkbox></p>
-            </a-card>
-          </a-col>
-        </a-row>
-      </a-checkbox-group>
+      <a-row type="flex" :gutter="[24,24]">
+        <a-col :span="6" v-for="(table,index) in tableList" :key="index">
+          <a-card size="small" :title="`数据库表: ${table.table}`" :bordered="false">
+            <template #extra><a-input :value="table.name" size="small"  addon-before="Modle Name" style="width: 80%;display: inline-block;float: right" /></template>
+<!--            <p><a-checkbox  v-model:checked="table.methodInfos[0].selected">{{table.methodInfos[0].actionName}}</a-checkbox></p>-->
+            <p><a-checkbox v-for="(info,key) in table.methods" :key="key"  v-model:checked="info.selected">{{info.actionName}}</a-checkbox></p>
+          </a-card>
+        </a-col>
+      </a-row>
     </div>
   </a-card>
 

@@ -33,6 +33,28 @@ export interface TableInfo {
     columns:Column[];
 }
 
+
+
+export interface MethodInfo{
+    //方法名称 ['add','edit','delete','queryPaginate','queryAll']
+    name:string,
+    action:string;
+    actionName:string,
+    path:string,
+    controllerName:string,
+    serviceName:string,
+    apiMoudel:string,
+    apiName:string,
+    selected:boolean
+}
+
+
+export interface TableModelInfo extends TableInfo{
+    name:string,
+    methods:MethodInfo[]
+}
+
+
 export interface  Connection{
     name:string;
     connection:string;
@@ -42,6 +64,7 @@ export interface TableBase {
     connection:string;
     entityNamespace:string;
     modelNamespace:string;
+    codePath:string;
 }
 
 export interface Column {
