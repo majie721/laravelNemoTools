@@ -89,7 +89,7 @@ export default function useTable() {
                 'modelNamespace': tableBase.value.modelNamespace,
                 'entityNamespace': tableBase.value.entityNamespace,
                 'list': tableList.value.filter((val)=>{
-                    val.methods = val.methods.filter((val)=>{return val.selected});
+                    //val.methods = val.methods.filter((val)=>{return val.selected});
                     return  val.methods.some((value => {return value.selected}))
                 })
             })
