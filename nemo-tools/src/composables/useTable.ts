@@ -65,7 +65,7 @@ export default function useTable() {
                 serviceName: `${path}\\Service\\${name}Service`,
                 apiMoudel: '',
                 apiName: '',
-                selected: true
+                selected: false
             }
             arr.push(tmp)
         }
@@ -76,10 +76,20 @@ export default function useTable() {
     const onCreate = async () => {
         console.log(tableList.value);
         validate().then(async () => {
+
+            if(tableList.value.length>0){
+                for (const table of tableList.value) {
+                    for (let method of table.methods) {
+                        method.path = tableBase.value.codePath
+                    }
+                }
+            }
+
             let response = await http.post(api.create_entity, {
                 'modelNamespace': tableBase.value.modelNamespace,
                 'entityNamespace': tableBase.value.entityNamespace,
                 'list': tableList.value.filter((val)=>{
+                    val.methods = val.methods.filter((val)=>{return val.selected});
                     return  val.methods.some((value => {return value.selected}))
                 })
             })

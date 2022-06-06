@@ -22,7 +22,7 @@ export default defineConfig({
      // '/nemo': 'http://laravel9.com/nemo',
       // with options
       '/nemo': {
-        target: 'http://shiguang.com/',
+        target: 'http://demo.com/',
         changeOrigin: true
        // rewrite: path => path.replace(/^\/api/, '')
       }

@@ -15,7 +15,7 @@
       <a-form-item class="form-item"  name="entity namespace" label="entity namespace" :rules="rules.entityNamespace" v-bind="validateInfos.entityNamespace">
         <a-input  v-model:value="tableBase.entityNamespace"/>
       </a-form-item>
-      <a-form-item class="form-item"  name="code namespace" label="code namespace" :rules="rules.codePath" v-bind="validateInfos.codeNamespace">
+      <a-form-item class="form-item"  name="code namespace" label="code namespace" :rules="rules.codePath" v-bind="validateInfos.codePath">
         <a-input  v-model:value="tableBase.codePath"/>
       </a-form-item>
       <a-form-item class="form-item"  name="connections" label="connections">
@@ -52,8 +52,7 @@ import {useRouter} from "vue-router";
 import useTable from "@/composables/useTable";
 
 const router = useRouter()
-const {tableList,selectTableList,connections,tableBase,rules,validateInfos,onCreate,getTables} = useTable();
-console.log(tableList);
+const {tableList,connections,tableBase,rules,validateInfos,onCreate,getTables} = useTable();
 
 </script>
 <style scoped lang="scss">
